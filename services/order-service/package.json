@@ -1,0 +1,30 @@
+{
+  "name": "order-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "order service  orders, order_items, product_images. Owns the * domain from the monolith, its own SQL Server database.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon  src/server.js",
+    "make:migration": "node ../../tools/make-migration.js order-service",
+    "migrate": "node src/database/scripts/migrate.js"
+  },
+  "dependencies": {
+    "axios": "^1.20.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.6.2",
+    "ioredis": "^6.0.0",
+    "joi": "^17.13.1",
+    "kafkajs": "^2.2.4",
+    "mssql": "^11.0.1",
+    "nodemon": "^3.1.14",
+    "pino": "^9.1.0",
+    "pino-pretty": "^11.0.0",
+    "slugify": "^1.6.9",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

@@ -1,0 +1,29 @@
+import axios from "axios";
+import { env } from "../config/env.js";
+import { AppError } from "../utils/appError.js";
+
+export const getProductsByIds = async (productIds) => {
+  if (!productIds || productIds.length === 0) return [];
+  try {
+    const idsQuery = productIds.join(",");
+    const response = await axios.get(
+      `${env.CATALOG_SERVICE_URL}/api/products/batch`,
+      { params: { ids: idsQuery }, timeout: 3000 },
+    );
+    return response.data.data || response.data;
+  } catch (err) {
+    if (err.code === "ECONNREFUSED" || err.code === "ECONNABORTED") {
+      throw new AppError("Catalog service is currently unavailable", 503);
+    }
+
+    if (err.response) {
+      // catalog-service responded with a real error — preserve its
+      // status/message instead of letting mapSqlError flatten it to a 500
+      throw new AppError(
+        err.response.data?.message ?? "Products lookup failed",
+        err.response.status,
+      );
+    }
+    throw err;
+  }
+};  

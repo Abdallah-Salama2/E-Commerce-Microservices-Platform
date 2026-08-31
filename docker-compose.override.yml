@@ -1,0 +1,67 @@
+# ============================================================================
+# Dev override — applied automatically alongside docker-compose.yml when you
+# just run `docker compose up` (compose merges this file in by default).
+# Switches every service to its `dev` build target, bind-mounts source for
+# live reload, and runs `npm run dev` (nodemon) instead of `node src/server.js`.
+#
+# To run the PRODUCTION shape instead (no bind mounts, no nodemon):
+#   docker compose -f docker-compose.yml up --build
+# (explicitly naming only the base file skips this override).
+# ============================================================================
+
+services:
+  identity-service:
+    build:
+      target: dev
+    volumes:
+      - ./services/identity-service:/app
+      - /app/node_modules
+    command: npm run dev
+
+  catalog-service:
+    build:
+      target: dev
+    volumes:
+      - ./services/catalog-service:/app
+      - /app/node_modules
+    command: npm run dev
+
+  inventory-service:
+    build:
+      target: dev
+    volumes:
+      - ./services/inventory-service:/app
+      - /app/node_modules
+    command: npm run dev
+
+  cart-service:
+    build:
+      target: dev
+    volumes:
+      - ./services/cart-service:/app
+      - /app/node_modules
+    command: npm run dev
+
+  order-service:
+    build:
+      target: dev
+    volumes:
+      - ./services/order-service:/app
+      - /app/node_modules
+    command: npm run dev
+
+  media-service:
+    build:
+      target: dev
+    volumes:
+      - ./services/media-service:/app
+      - /app/node_modules
+    command: npm run dev
+
+  notification-service:
+    build:
+      target: dev
+    volumes:
+      - ./services/notification-service:/app
+      - /app/node_modules
+    command: npm run dev
