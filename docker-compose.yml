@@ -277,11 +277,11 @@ services:
       # Same placeholder pattern as identity-service — swap for a real
       # provider (or Mailhog/Mailtrap for local dev) before order-confirmed/
       # order-cancelled emails need to actually deliver anywhere.
-      SMTP_HOST: "smtp.gmail.com"
+      SMTP_HOST: "smtp.example.com"
       SMTP_PORT: "587"
-      SMTP_USER: "sadlifeee21@gmail.com"
-      SMTP_PASSWORD: "vmsd skpa hzue gskv"
-      SMTP_FROM: "E-Commerce App <sadlifeee21@gmail.com>"
+      SMTP_USER: "placeholder"
+      SMTP_PASSWORD: "placeholder"
+      SMTP_FROM: "no-reply@example.com"
     depends_on:
       db:
         condition: service_healthy
